@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin </title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="admin.html">Home</a>
+        <a href="contacts.html">Contact Us</a>
+        <a href="enquirys.html">Enquiry</a>
+        <a href="createLocation.html">Create Location</a>
+        <a href="addplace.html">Add Places details</a>
+        <a href="change-password.html">Change Password</a>
+        <a href="login.html">Logout</a>
+    </div>
+    
+    <div class="navbar">
+        <span class="openbtn" onclick="openNav()">&#9776;</span>
+        <h2>Admin Dashboard</h2>
+    </div>
+    
+    <div class="container-card">
+        <div class="card" id="card1" style="width: 18rem;">
+            <a href="enquirys.html" class="Enquiry-card">Enquiry <br> <span id="enquiryCount">0 </span> enquiries</a>
+        </div>
+        <div class="card" id="card3" style="width: 18rem;">
+            <a href="contacts.html" class="Contact-card">Contact Us  <br> <span id="contactCount">0</span> contacts</a>
+        </div>
+    </div>
+
+    <script>
+        async function fetchCounts() {
+            try {
+                // Fetch enquiry count
+                const enquiryResponse = await fetch('/enquiries/count');
+                if (!enquiryResponse.ok) throw new Error('Failed to fetch enquiry count');
+                const { count: enquiryCount } = await enquiryResponse.json();
+                document.getElementById('enquiryCount').textContent = enquiryCount;
+
+                // Fetch contact count
+                const contactResponse = await fetch('/contacts/count');
+                if (!contactResponse.ok) throw new Error('Failed to fetch contact count');
+                const { count: contactCount } = await contactResponse.json();
+                document.getElementById('contactCount').textContent = contactCount;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Failed to fetch counts.');
+            }
+        }
+
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+
+        window.onload = function() {
+            closeNav();
+            fetchCounts();
+        };
+    </script>
+</body>
+</html>
