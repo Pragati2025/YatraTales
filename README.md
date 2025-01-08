@@ -1,4 +1,4 @@
-![Screenshot (114)](https://github.com/user-attachments/assets/2faf44f3-e5fc-4930-b0a0-cda09e2d9c42
+
 YatraTales 🌍✈️
 
 Welcome to YatraTales! Your go-to tour and travel website that brings the beauty and culture of India right to your fingertips. 🌏
